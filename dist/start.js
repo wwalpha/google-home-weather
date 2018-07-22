@@ -13,7 +13,7 @@ const conversation = {
         sampleRateOut: 24000,
     },
 };
-const auto = ['0720', '0740', '1435', '1436', '2030', '2100'];
+const auto = ['0720', '0740', '1435', '1436', '2030', '2100', '2114', '2115', '2116'];
 const getNextTime = () => {
     const now = moment().format('HHmm');
     const next = moment();
