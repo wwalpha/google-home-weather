@@ -45,8 +45,8 @@ const weather = () => {
       const query = now > '1800' ? '明日の天気' : '今日の天気';
 
       assistant.query({ ...conversation, textQuery: query }).then((fileName: string) => {
-        Home.play(`http://172.16.80.208:9901/weather/${fileName}`);
-
+        // Home.play(`http://172.16.80.208:9901/weather/${fileName}`);
+        Home.play(`http://172.16.81.93:9902/weather/${fileName}`);
         console.log('wait 60s for next start');
         setTimeout(weather, 30 * 1000);
       }).catch(console.error);
@@ -58,7 +58,7 @@ const weather = () => {
 app.use('/weather', express.static('mp3'));
 
 app.listen(9902, () => {
-  console.log('server started on port 9901');
+  console.log('server started on port 9902');
 
   weather();
 });
