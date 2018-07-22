@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && node dist/start.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -20,7 +20,8 @@
   "dependencies": {
     "express": "^4.16.3",
     "google-assistant": "^0.5.2",
-    "google-home-pusher": "https://github.com/wwalpha/google-home-pusher.git"
+    "google-home-pusher": "https://github.com/wwalpha/google-home-pusher.git",
+    "moment": "^2.22.2"
   },
   "devDependencies": {
     "tslint": "^5.11.0",
