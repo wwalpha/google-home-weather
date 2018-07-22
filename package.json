@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc && node dist/start.js",
+    "run": "forever start dist/start.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
