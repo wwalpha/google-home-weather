@@ -53,8 +53,8 @@ const weather = () => {
         setTimeout(weather, 30 * 1000);
       }).catch(console.error);
     },
-    // getNextTime(),
-    1000,
+    getNextTime(),
+    // 1000,
   );
 };
 

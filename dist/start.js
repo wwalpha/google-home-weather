@@ -38,7 +38,7 @@ const weather = () => {
             console.log('wait 60s for next start');
             setTimeout(weather, 30 * 1000);
         }).catch(console.error);
-    }, 1000);
+    }, getNextTime());
 };
 app.use('/weather', express.static('mp3'));
 app.listen(9902, () => {
