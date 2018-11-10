@@ -5,7 +5,8 @@ const moment = require("moment");
 const express = require('express');
 const app = express();
 const assistant = require('./assistant');
-Home.ip('172.16.80.3');
+const HOME_IP = '172.16.80.41';
+Home.ip(HOME_IP);
 const conversation = {
     lang: 'ja-JP',
     audio: {
@@ -13,7 +14,7 @@ const conversation = {
         sampleRateOut: 24000,
     },
 };
-const auto = ['0720', '0740', '1435', '1436', '2030', '2100'];
+const auto = ['0720', '0740', '2030', '2100'];
 const getNextTime = () => {
     const now = moment().format('HHmm');
     const next = moment();
@@ -33,11 +34,11 @@ const weather = () => {
         const now = moment().format('HHmm');
         const query = now > '1800' ? '明日の天気' : '今日の天気';
         assistant.query(Object.assign({}, conversation, { textQuery: query })).then((fileName) => {
-            Home.play(`http://172.16.81.93:9902/weather/${fileName}`);
+            Home.play(`http://${require('ip').address()}:9902/weather/${fileName}`);
             console.log('wait 60s for next start');
             setTimeout(weather, 30 * 1000);
         }).catch(console.error);
-    }, getNextTime());
+    }, 1000);
 };
 app.use('/weather', express.static('mp3'));
 app.listen(9902, () => {

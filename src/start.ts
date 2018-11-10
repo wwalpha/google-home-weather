@@ -4,8 +4,10 @@ const express = require('express');
 const app = express();
 const assistant = require('./assistant');
 
+const HOME_IP = '172.16.80.41';
+
 // init google home pusher
-Home.ip('172.16.80.3');
+Home.ip(HOME_IP);
 
 const conversation = {
   lang: 'ja-JP',
@@ -15,7 +17,7 @@ const conversation = {
   },
 };
 
-const auto = ['0720', '0740', '1435', '1436', '2030', '2100'];
+const auto = ['0720', '0740', '2030', '2100'];
 // const auto = ['0720', '0740', '1435', '1436', '2030', '2100', '2118', '2119', '2120'];
 
 const getNextTime = () => {
@@ -46,13 +48,13 @@ const weather = () => {
       const query = now > '1800' ? '明日の天気' : '今日の天気';
 
       assistant.query({ ...conversation, textQuery: query }).then((fileName: string) => {
-        // Home.play(`http://172.16.80.208:9901/weather/${fileName}`);
-        Home.play(`http://172.16.81.93:9902/weather/${fileName}`);
+        Home.play(`http://${require('ip').address()}:9902/weather/${fileName}`);
         console.log('wait 60s for next start');
         setTimeout(weather, 30 * 1000);
       }).catch(console.error);
     },
-    getNextTime(),
+    // getNextTime(),
+    1000,
   );
 };
 
